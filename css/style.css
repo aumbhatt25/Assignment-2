@@ -1,0 +1,78 @@
+body{
+    font-family: sans-serif;
+    background-color: rgb(231, 231, 231);
+}
+
+.input{
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    padding: 20px;
+}
+
+.todoInput{
+    width: 1510px;
+    height: 44px;
+    border-style: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    box-shadow: 0 1.5px 0 0 #a5a5a5;
+}
+.todoInput:focus{
+    outline: none;
+}
+
+.addbtn{
+    width: 310px;
+    height: 47px;
+    background-color: #1a73e8;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+.addbtn:hover{
+    cursor: pointer;
+}
+
+.todo{
+    background-color: white;
+    border: 1px solid rgb(190, 190, 190, 0.411);
+    margin-top: 40px;
+    margin: auto;
+    width: 1794px;
+    align-items: center;
+    box-shadow: 0 0px 0 0 rgb(190, 190, 190, 0.411);
+}
+.heading{
+    padding-left: 25px;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+}
+
+.list{
+    list-style: none;
+    padding-right: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* .list .checked{
+    text-decoration: line-through;
+} */
+
+.list li{
+    display: flex;
+    padding: 15px 25px;
+    border-bottom: 1px solid rgba(202, 202, 202, 0.411);
+    align-items: center;
+}
+.check{
+    margin-right: 10px;
+}
+li .fa-trash{
+    display: flex;
+    justify-self: flex-end;
+}
