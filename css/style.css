@@ -60,10 +60,6 @@ body{
 
 }
 
-.completed{
-    text-decoration: line-through;
-}
-
 ul li{
     display: flex;
     padding: 15px 25px;
@@ -77,6 +73,12 @@ ul li:last-child{
 ul li i:hover{
     cursor: pointer;
 }
+ul li .checked {
+    text-decoration: line-through;
+}
+ul li input[type=checkbox]:checked ~ label {
+    text-decoration: line-through;
+    }
 .left{
     display: flex;
     justify-self: flex-start !important;
