@@ -57,22 +57,36 @@ body{
     padding-right: 40px;
     display: flex;
     flex-direction: column;
+
 }
 
-/* .list .checked{
+.completed{
     text-decoration: line-through;
-} */
+}
 
-.list li{
+ul li{
     display: flex;
     padding: 15px 25px;
     border-bottom: 1px solid rgba(202, 202, 202, 0.411);
     align-items: center;
+    justify-content: space-between;
 }
-.check{
-    margin-right: 10px;
+ul li:last-child{
+    border-bottom: 0px !important;
 }
-li .fa-trash{
+ul li i:hover{
+    cursor: pointer;
+}
+.left{
     display: flex;
-    justify-self: flex-end;
+    justify-self: flex-start !important;
+}
+.task{
+    display: flex;
+    border-style: none;
+    font-size: medium;
+}
+.fa fa-trash{
+    display: flex;
+    justify-self: start;
 }

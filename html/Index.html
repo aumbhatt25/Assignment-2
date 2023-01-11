@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Assignment-2/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="/Assignment-2/js/script.js"></script>
     <title>Document</title>
 </head>
 <body>
     <form action="" class="todoForm">
         <div class="input">
-            <input type="text" class="todoInput" placeholder="&#xf02c; What needs to be done?"></input>
+            <input type="text" id="todoInput" class="todoInput" placeholder="&#xf02c; What needs to be done?"></input>
             <span class="addbtn" onclick="addElement()">&#8853; Add</span>
         </div>
     
@@ -23,11 +22,12 @@
     </form>
 
         <ul class="list">
-            <li><input type="checkbox" class="check">Test React Ant Design Todo List</li>
+            <!-- <li><input type="checkbox" class="check">Test React Ant Design Todo List <i class="fa fa-trash" aria-hidden="true"></i></li>
             <li><input type="checkbox" class="check">Write About React And Ant Design</li>
             <li class="checked"><input type="checkbox" class="check">Finalise Presentation</li>
-            <li style="border-bottom: none;"><input type="checkbox" class="check">Book Flights To Ireland</li>
+            <li style="border-bottom: none;"><input type="checkbox" class="check">Book Flights To Ireland</li> -->
         </ul>
     </div>
+    <script src="/Assignment-2/js/script.js"></script>
 </body>
 </html>

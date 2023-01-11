@@ -1,27 +1,37 @@
-const todoForm = document.querySelector('.todoForm');
-const todoInput = document.querySelector('.todoInput');
-const todoList = document.querySelector('.list');
+document.querySelector("form").addEventListener("submit", e => {
+      e.preventDefault();
+      addTask();
+});
 
-let toDos=[];
+const todoInput = document.getElementById("todoInput");
 
-todoForm.addEventListener('submit', function(event){
-    event.preventDefault();
+function addElement() {
+    const task = document.querySelector(".todoInput");
+    const list = document.querySelector("ul");
 
-    addElement(todoInput.value);
-})
-
-function addElement(item){
-    if(item!==''){
-        
+    if(task.value==''){
+        alert('Please enter something!');
+        task.value.parentElement.remove();
     }
-    
-    todoInput.value='';
+
+    const li = document.createElement("li");
+    li.innerHTML = `<div class="left"><input type="checkbox" class="check" onclick="taskComplete(this)">
+    <input type="text" value="${task.value}" id="task" class="${completed ? "completed" : "task"}"></div>
+    <i class="fa fa-trash" style="color: red;" onclick="remove(this)"></i>`;
+    list.appendChild(li);
+
+    task.value = "";
+}
+var completed = false;
+
+function remove(event) {
+    event.parentElement.remove();
 }
 
-function rendering(toDos){
-    todoList.innerHTML='';
-
-    //creating list
-    const li = document.createElement('li');
-    li.setAttribute('class','item');
+document.addEventListener('keyup', keypress);
+function keypress(e){
+    e.preventDefault()
+    if (e.key === 'Enter' || e.keyCode === 13) {
+        addElement();
+    }
 }
