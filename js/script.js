@@ -12,7 +12,11 @@ todoForm.addEventListener('submit', function(event){
 
 function addElement(item){
     if(item!==''){
-        toDos.push(todoitem);
+        const todoitem = {
+            id: Date.now(),
+            name: item,
+            completed: false
+        }
     }
     
     todoInput.value='';
