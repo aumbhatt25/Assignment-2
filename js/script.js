@@ -12,11 +12,7 @@ todoForm.addEventListener('submit', function(event){
 
 function addElement(item){
     if(item!==''){
-        const todoitem = {
-            id: Date.now(),
-            name: item,
-            completed: false
-        }
+        
     }
     
     todoInput.value='';
@@ -24,10 +20,6 @@ function addElement(item){
 
 function rendering(toDos){
     todoList.innerHTML='';
-
-    toDos.forEach(function(item){
-        const checked = item.completed ? 'checked' : null;
-    })
 
     //creating list
     const li = document.createElement('li');
