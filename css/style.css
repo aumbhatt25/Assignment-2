@@ -29,9 +29,11 @@ body{
     color: #fff;
     display: flex;
     justify-content: center;
+    border-style: none;
     align-items: center;
     border-radius: 4px;
     margin-left: 10px;
+    font-size: 15px;
 }
 .addbtn:hover{
     cursor: pointer;
@@ -73,12 +75,31 @@ ul li:last-child{
 ul li i:hover{
     cursor: pointer;
 }
-ul li .checked {
-    text-decoration: line-through;
+.checked{
+    display: none;
+}
+.unchecked{
+    display: flex;
+    color: red;
+    border-style: 1px solid red;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 ul li input[type=checkbox]:checked ~ label {
     text-decoration: line-through;
-    }
+}
+ul li input[type=checkbox]:checked ~ .unchecked {
+    display: none;
+}
+ul li input[type=checkbox]:checked ~ .checked {
+    display: flex;
+    color: green;
+    border-style: 1px solid green;
+    border-radius: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
 .left{
     display: flex;
     justify-self: flex-start !important;

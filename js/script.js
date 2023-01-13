@@ -1,42 +1,63 @@
-document.querySelector("form").addEventListener("submit", e => {
-      e.preventDefault();
-      addTask();
-});
-var completed = false;
-const todoInput = document.getElementById("todoInput");
+let toDos = [];
 
-function addElement() {
-    const task = document.querySelector(".todoInput");
-    const list = document.querySelector("ul");
-
-    if(task.value==''){
-        alert('Please enter something!');
-        task.value.parentElement.remove();
+function addToDo(text){
+    const todo = {
+        name: text,
+        checked: false,
+        id: Date.now()
+    };
+    
+    if(todo.name.value==''){
+        todo.name.value.remove();
     }
 
+    toDos.push(todo);
+    showTodo(todo);
+}
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit',event=>{
+    event.preventDefault();
+
+    const input = document.querySelector('.todoInput');
+    const text = input.value;
+    if(text!==''){
+        addToDo(text);
+        input.value = '';
+        input.focus();
+    }
+});
+
+function showTodo(todo){
+
+    localStorage.setItem('todoRef', JSON.stringify(toDos));
+    const list = document.querySelector('.list');
+    const isChecked = todo.checked ? 'done' : '';
+
     const li = document.createElement("li");
-    li.innerHTML = `<div class="left"><input type="checkbox" id="checkbox" name="checkbox" class="check">
-    <label id="task" class="task">${task.value}</label></div>
+    li.setAttribute('class', `todoClass${isChecked}`);
+
+    li.setAttribute('data-key', todo.id);
+
+    li.innerHTML = `<div class="left"><input type="checkbox" id="${todo.id}" name="checkbox" class="check">
+    <span id="${todo.id}" class="unchecked"> - </span>
+    <span id="${todo.id}" class="checked"> &#10003 </span>
+    <label id="${todo.id}" class="task">${todo.name}</label></div>
     <i class="fa fa-trash" style="color: red;" onclick="remove(this)"></i>`;
-    list.appendChild(li);
-    document.getElementById("todoInput").value='';
 
-    var textbox = document.getElementById("task");
-    var checkbox = document.querySelector("input[name='checkbox']");
-    $('#checkbox').change(function() {
-        if (this.checked) {
-            completed=!completed;
-        }
-    });
-
-    task.value = "";
-    
+    list.append(li);
 }
 
 function remove(event) {
+    for(let i=0;i<toDos.length;i++){
+        if(event == toDos[i])
+        {
+            toDos.splice(i,1);
+        }
+    }
     event.parentElement.remove();
 }
-
 document.addEventListener('keyup', keypress);
 function keypress(e){
     e.preventDefault()
@@ -44,3 +65,32 @@ function keypress(e){
         addElement();
     }
 }
+
+const todoInput = document.getElementById("todoInput");
+
+todoInput.addEventListener('input',function(){
+    let searchInput= todoInput.value.toLowerCase();
+
+    let lbl=document.getElementsByTagName('li');
+
+    Array.from(lbl).forEach(function(task){
+        let taskTxt = task.getElementsByTagName("label")[0].innerHTML;
+
+        if(taskTxt.toLowerCase().includes(searchInput)){
+            task.style.display = "flex";
+        }else{
+            task.style.display = "none";
+        }
+    })
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    const ref = localStorage.getItem('todoRef');
+    if (ref) {
+      toDos = JSON.parse(ref);
+      toDos.forEach(t => {
+        showTodo(t);
+      });
+    }
+  });
+  
