@@ -56,19 +56,6 @@ function showTodo(todo){
     list.append(li);
 }
 
-// function remove(event) {
-//     let stored = localStorage.getItem("todoRef");
-//     let toDos = JSON.parse(stored);
-//     for(let i=0;i<toDos.length;i++){
-//         if(event == toDos[i])
-//         {
-//             toDos.splice(i,1);
-//         }
-//     }
-//     event.parentElement.remove();
-//     localStorage.setItem("todoRef", JSON.stringify(toDos));
-// }
-
 document.addEventListener('click', function deleteHandler(event){
     var hasClass = event.target.matches('.delete');
     if(hasClass){
