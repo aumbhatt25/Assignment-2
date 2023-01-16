@@ -91,7 +91,7 @@ ul li i:hover{
 /* ul li input[type=checkbox]:checked ~ label {
     text-decoration: line-through;
 } */
-ul li input[type=checkbox]:checked ~ .unchecked {
+/* ul li input[type=checkbox]:checked ~ .unchecked {
     display: none;
 }
 ul li input[type=checkbox]:checked ~ .checked {
@@ -105,6 +105,9 @@ ul li input[type=checkbox]:checked ~ .checked {
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: -2px;
+} */
+.done label{
+    text-decoration: line-through;
 }
 
 .delete{
