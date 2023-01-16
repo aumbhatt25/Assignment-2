@@ -12,19 +12,18 @@
     <form action="" class="todoForm">
         <div class="input">
             <input type="text" id="todoInput" class="todoInput" placeholder="&#xf02c; What needs to be done?"></input>
-            <button class="addbtn" onclick="addToDo()">&#8853; Add</button>
+            <button type="submit" class="addbtn">&#8853; Add</button>
         </div>
     
         <div class="todo">
             <div class="heading">
                 <h4>Todo List</h4>
             </div>
+            <ul id="mylist" class="list">
+            </ul>
+            <!-- <h2 style="display: flex; justify-content: center;" id="notfound">No results found!</h2> -->
+        </div>
     </form>
-
-        <ul class="list">
-        </ul>
-        <!-- <h2 style="display: flex; justify-content: center;" id="notfound">No results found!</h2> -->
-    </div>
     <script src="/Assignment-2/js/script.js"></script>
 </body>
 </html>
