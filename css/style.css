@@ -74,6 +74,10 @@ ul li:last-child{
 ul li i:hover{
     cursor: pointer;
 }
+h2{
+    display: flex;
+    justify-content: center;
+}
 .checked{
     display: flex;
     color: green;

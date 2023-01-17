@@ -116,8 +116,12 @@ function checkingCheckBox(myIndex){
 
 document.addEventListener('DOMContentLoaded', () => {
     const ref = localStorage.getItem('todoRef');
+    let toDos = [];
     if (ref) {
-        let toDos = JSON.parse(ref);
+        toDos = JSON.parse(ref);
         showTodo(toDos);
+    }
+    else{
+        localStorage.setItem("todoRef", JSON.stringify(toDos));
     }
   });
