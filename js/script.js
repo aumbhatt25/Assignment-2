@@ -1,4 +1,3 @@
-let toDos = [];
 const form = document.querySelector('form');
 
 form.addEventListener('submit',event=>{
@@ -12,7 +11,7 @@ form.addEventListener('submit',event=>{
     }
     if(document.addEventListener('keyup', keypress)){
     function keypress(e){
-        e.preventDefault()
+        e.preventDefault();
         if (e.key === 'Enter' || e.keyCode === 13) {
             addToDo(text);
         }
@@ -21,6 +20,8 @@ form.addEventListener('submit',event=>{
 });
 
 function addToDo(text){
+    let ref = localStorage.getItem('todoRef');
+    let toDos = JSON.parse(ref);
     const todo = {
         name: text,
         checked: false,
@@ -31,7 +32,6 @@ function addToDo(text){
     }
 
     toDos.push(todo);
-    console.log(toDos);
 
     localStorage.setItem('todoRef', JSON.stringify(toDos));
     showTodo(toDos);
@@ -42,12 +42,9 @@ function showTodo(array){
     const list = document.querySelector('#mylist');
     const div = document.getElementById('myTodo');
     list.innerHTML='';
-    // console.log(list);
     const h2 = document.getElementById('notfound');
-    
-    array.forEach(function(todo, index){
 
-        // const item = document.querySelector(`[data-key='${todo.id}']`);
+    array.forEach(function(todo, index){
 
         const isChecked = todo.checked ? 'done' : '';
 
@@ -67,7 +64,6 @@ function showTodo(array){
     if(array.length==0){
         h2.style.display='flex';
         h2.style.justifyContent='center';
-        console.log("h2");
     }else{
         h2.style.display='none';
     }
@@ -89,11 +85,10 @@ const todoInput = document.getElementById("todoInput");
 todoInput.addEventListener('input',function(){
     let searchInput= todoInput.value.toLowerCase();
 
-    // let lbl=document.getElementsByTagName('li');
 
     let ref = localStorage.getItem('todoRef');
-    // console.log(ref);
-    toDos = JSON.parse(ref);
+    
+    let toDos = JSON.parse(ref);
     let tempArr = [];
 
     toDos.forEach(function(task){
@@ -122,7 +117,7 @@ function checkingCheckBox(myIndex){
 document.addEventListener('DOMContentLoaded', () => {
     const ref = localStorage.getItem('todoRef');
     if (ref) {
-        toDos = JSON.parse(ref);
+        let toDos = JSON.parse(ref);
         showTodo(toDos);
     }
   });
