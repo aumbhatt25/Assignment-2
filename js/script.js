@@ -39,11 +39,13 @@ function addToDo(text){
 
 function showTodo(array){
 
-    const list = document.querySelector('.list');
+    const list = document.querySelector('#mylist');
+    list.innerHTML='';
+    console.log(list);
 
-    array.forEach(function(todo){
+    array.forEach(function(todo, index){
 
-        const item = document.querySelector(`[data-key='${todo.id}']`);
+        // const item = document.querySelector(`[data-key='${todo.id}']`);
 
         const isChecked = todo.checked ? 'done' : '';
         const li = document.createElement("li");
@@ -51,60 +53,25 @@ function showTodo(array){
 
         li.setAttribute('data-key', todo.id);
 
-        li.innerHTML = `<div class="left"><input type="checkbox" id="${todo.id}" name="checkbox" class="check" onclick="checkingCheckBox(${todo.id})">
-        <span id="${todo.id}" class="unchecked"> - </span>
-        <span id="${todo.id}" class="checked"> &#10003 </span>
+        li.innerHTML = `<div class="left"><input type="checkbox" id="${todo.id}" ${isChecked ? 'checked' : ''} name="checkbox" class="check" onclick="checkingCheckBox(${index})">
+        <span id="nonactive${index}" style="${isChecked ? "display: none" : "display: flex"};" class="unchecked"> - </span>
+        <span id="active${index}" style="${isChecked ? "display: flex" : "display: none"};" class="checked"> &#10003 </span>
         <label id="${todo.id}" class="task">${todo.name}</label></div>
         <i class="fa fa-trash delete" onclick="deleteTodo(${todo.id})" style="color: red;"></i>`;
 
-        if (item) {
-            list.replaceChild(li, item);
-          } else {
-            list.append(li);
-          }
+        list.append(li);
     });
 }
 
-    // let myList = document.querySelector('ul')
-//     document.addEventListener('click', function deleteHandler(event){
-//     var hasClass = event.target.matches('.delete');
-//     if(hasClass){
-//         const itemKey = event.target.parentElement.dataset.key;
-//         deleteTodo(itemKey);
-//     }
-// })
-
-// function deleteTodo(key) {
-    // 
-    // let stored = localStorage.getItem("todoRef");
-    // toDos = JSON.parse(stored);
-
-    // const index = toDos.findIndex(item => item.id === Number(key));
-    
-    // const todo = {
-    //   deleted: true,
-    //   ...toDos[index]
-    // };
-    
-    // toDos = toDos.filter(item => item.id !== Number(key));
-    // localStorage.setItem("todoRef", JSON.stringify(toDos));
-    
-    // const item = document.querySelector(`[data-key='${todo.id}']`);
-
-    // if (todo.deleted) {
-    //     item.remove();
-    //     return;
-    //   }
-//   }
 
 function deleteTodo(id){
-    const ref = localStorage.getItem('todoRef');
+    let ref = localStorage.getItem('todoRef');
     console.log(ref);
     let tempArr = JSON.parse(ref);
       
     tempArr = tempArr.filter(item => item.id !== Number(id));
-    console.log(id);
     localStorage.setItem("todoRef", JSON.stringify(tempArr));
+    showTodo(tempArr);
 }
 
 const todoInput = document.getElementById("todoInput");
@@ -112,31 +79,35 @@ const todoInput = document.getElementById("todoInput");
 todoInput.addEventListener('input',function(){
     let searchInput= todoInput.value.toLowerCase();
 
-    let lbl=document.getElementsByTagName('li');
+    // let lbl=document.getElementsByTagName('li');
 
-    Array.from(lbl).forEach(function(task){
-        let taskTxt = task.getElementsByTagName("label")[0].innerHTML;
+    let ref = localStorage.getItem('todoRef');
+    // console.log(ref);
+    toDos = JSON.parse(ref);
+    let tempArr = [];
+
+    toDos.forEach(function(task){
+        let taskTxt = task.name;
 
         if(taskTxt.toLowerCase().includes(searchInput)){
-            task.style.display = "flex";
-        }else{
-            task.style.display = "none";
+            tempArr.push(task);
         }
     })
+    showTodo(tempArr);
 })
 
-function checkingCheckBox(id){
+function checkingCheckBox(myIndex){
     const ref = localStorage.getItem('todoRef');
-    const tempArr = JSON.parse(ref);
-    tempArr.forEach(function(item){
-        if(item.id==id){
+    let tempArr = JSON.parse(ref);
+    tempArr.forEach(function(item, index){
+        if(myIndex==index){
             item.checked=!item.checked;
         }
     })
 
     localStorage.setItem("todoRef", JSON.stringify(tempArr));
+    showTodo(tempArr);
 }
-window.addEventListener('change', save);
 
 document.addEventListener('DOMContentLoaded', () => {
     const ref = localStorage.getItem('todoRef');
