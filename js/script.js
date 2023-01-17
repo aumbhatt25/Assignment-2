@@ -40,14 +40,17 @@ function addToDo(text){
 function showTodo(array){
 
     const list = document.querySelector('#mylist');
+    const div = document.getElementById('myTodo');
     list.innerHTML='';
-    console.log(list);
-
+    // console.log(list);
+    const h2 = document.getElementById('notfound');
+    
     array.forEach(function(todo, index){
 
         // const item = document.querySelector(`[data-key='${todo.id}']`);
 
         const isChecked = todo.checked ? 'done' : '';
+
         const li = document.createElement("li");
         li.setAttribute('class', `todoClass ${isChecked}`);
 
@@ -61,6 +64,13 @@ function showTodo(array){
 
         list.append(li);
     });
+    if(array.length==0){
+        h2.style.display='flex';
+        h2.style.justifyContent='center';
+        console.log("h2");
+    }else{
+        h2.style.display='none';
+    }
 }
 
 
