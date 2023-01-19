@@ -4,7 +4,8 @@ form.addEventListener('submit',event=>{
     event.preventDefault();
 
     const input = document.querySelector('.todoInput');
-    const text = input.value;
+    const text1 = input.value.trim();
+    const text=text1.trim();
     if(text!==''){
         addToDo(text);
         input.value = '';
